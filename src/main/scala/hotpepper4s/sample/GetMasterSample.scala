@@ -7,4 +7,5 @@ import hotpepper4s.HotPepper
  */
 object GetMasterSample extends App {
   println(HotPepper.budgets)
+  println(HotPepper.largeServiceAreas)
 }

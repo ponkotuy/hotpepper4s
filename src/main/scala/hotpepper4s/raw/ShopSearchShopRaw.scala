@@ -1,6 +1,6 @@
 package hotpepper4s.raw
 
-import hotpepper4s.{SearchedShop, Genre, Urls}
+import hotpepper4s.{Results, SearchedShop, Genre, Urls}
 import hotpepper4s.Urls.NormalUrls
 
 /**
@@ -38,6 +38,12 @@ case class ShopSearchResult(
     results_available: Int,
     results_returned: String,
     results_start: String,
-    shop: List[ShopSearchShopRaw])
+    shop: List[ShopSearchShopRaw]) extends Results[SearchedShop]{
+  def apiVersion: String = api_version
+  def resultsAvailable: Int = results_available
+  def resultsReturned: String = results_returned
+  lazy val resultsStart: Int = results_start.toInt
+  lazy val data: List[SearchedShop] = shop.map(_.toSearchedShop)
+}
 
 case class ShopSearchEntire(results: ShopSearchResult)

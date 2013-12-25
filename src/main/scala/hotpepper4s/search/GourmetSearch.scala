@@ -16,12 +16,12 @@ object GourmetSearch {
   def one(id: String, typ: Type): Shop = {
     val url = createQueryURL(GourmetURL, Map("id" -> id, "type" -> typ.str))
     val json = getJSON(url)
-    json.extract[Entire].results.shop(0)
+    json.extract[Entire].results.data.head
   }
 
   def shops(qMap: Map[String, String]): List[Shop] = {
     val url = createQueryURL(GourmetURL, qMap)
     val json = getJSON(url)
-    json.extract[Entire].results.shop
+    json.extract[Entire].results.data
   }
 }

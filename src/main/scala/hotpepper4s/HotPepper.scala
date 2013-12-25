@@ -1,8 +1,7 @@
 package hotpepper4s
 
 import com.typesafe.config.ConfigFactory
-import hotpepper4s.search.{BudgetMaster, ShopSearch, GourmetSearch}
-import java.net.URLEncoder
+import hotpepper4s.search.{LargeServiceAreaMaster, BudgetMaster, ShopSearch, GourmetSearch}
 import hotpepper4s.Budget.LimitedBudget
 import scala.util.{Failure, Success, Try}
 
@@ -48,4 +47,5 @@ object HotPepper {
 
   // GetMaster
   lazy val budgets: List[LimitedBudget] = BudgetMaster.budgets()
+  lazy val largeServiceAreas: List[Area] = LargeServiceAreaMaster.areas()
 }

@@ -16,6 +16,6 @@ object BudgetMaster {
   def budgets(): List[LimitedBudget] = {
     val url = createQueryURL(BudgetURL, Map())
     val json = getJSON(url)
-    json.extract[BudgetEntire].results.budget
+    json.extract[BudgetEntire].results.data
   }
 }
