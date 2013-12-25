@@ -1,52 +1,51 @@
 # -*- coding:utf-8 -*-
 
-#+TITLE: hotpepper4s
 #+AUTHOR: ポンコツ戦艦山本
 #+EMAIL: web@ponkotuy.com
 #+OPTIONS: toc:nil num:nil author:nil creator:nil
 #+STYLE: <link rel="stylesheet" type="text/css" href="org.css"></link>
 #+LANGUAGE: ja
 
-* Introduction
-  hotpepperのAPIをScalaから簡単に叩けるようにする為のWrapperです。
+** Introduction
+   hotpepperのAPIをScalaから簡単に叩けるようにする為のWrapperです。
 
-  リクルートのSiteでAPI Keyを取得する必要があります。
+   リクルートのSiteでAPI Keyを取得する必要があります。
 
-* Getting started
-  まずHotPepperAPIのkeyを取得。リクルートのWebサービスは統合されているので、リクルートで登録
+** Getting started
+   まずHotPepperAPIのkeyを取得。リクルートのWebサービスは統合されているので、リクルートで登録
 
-  [[http://webservice.recruit.co.jp/index.html]]
+   [[http://webservice.recruit.co.jp/index.html]]
 
-  新規登録から行ける。メールアドレスのみで特に審査等はない。
+   新規登録から行ける。メールアドレスのみで特に審査等はない。
 
-  次にhotpepper4sをgitからcloneして
+   次にhotpepper4sをgitからcloneして
 
-  [[https://github.com/ponkotuy/hotpepper4s]]
+   [[https://github.com/ponkotuy/hotpepper4s]]
 
-  src/main/resouces/hotpepper4s.confに
+   src/main/resouces/hotpepper4s.confに
 
 #+BEGIN_SRC conf
   authentication.key = {{key}}
 #+END_SRC
 
-  と置けば良い。
+   と置けば良い。
 
-  詳しくはsrc/main/sample以下を参考。
+   詳しくはsrc/main/sample以下を参考。
 
-* 注意点
-  詳細は公式のAPI Referenceも見ると良い。
-  [[http://webservice.recruit.co.jp/hotpepper/reference.html]]
+** 注意点
+   詳細は公式のAPI Referenceも見ると良い。
+   [[http://webservice.recruit.co.jp/hotpepper/reference.html]]
 
-** gourmetSearchとshopSearch
-   gourmetSearchとshopSearchは似ているが全く別物。取れる情報も検索できる条件も、そもそもマスターデータから違う。
-   後者が旧フォーマットではないかという予想はある。
+*** gourmetSearchとshopSearch
+    gourmetSearchとshopSearchは似ているが全く別物。取れる情報も検索できる条件も、そもそもマスターデータから違う。
+    後者が旧フォーマットではないかという予想はある。
 
-** gourmetSearchのType
-   帰ってくるデータ量をNormal、Liteなどから選べる。ただし現状ではLiteのみ。
+*** gourmetSearchのType
+    帰ってくるデータ量をNormal、Liteなどから選べる。ただし現状ではLiteのみ。
 
-* TODOリスト
-  - マスター取得系APIの実装
-  - Lite以外のTypeへの対応
-  - 継承関係の整理
-  - twitter4jっぽくページめくりの実装
-  - scaladoc整理
+** TODOリスト
+   - マスター取得系APIの実装
+   - Lite以外のTypeへの対応
+   - 継承関係の整理
+   - twitter4jっぽくページめくりの実装
+   - scaladoc整理
