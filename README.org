@@ -17,7 +17,7 @@
 
   [[http://webservice.recruit.co.jp/index.html]]
 
-  新規登録から行ける。メールアドレスのみで簡単。
+  新規登録から行ける。メールアドレスのみで特に審査等はない。
 
   次にhotpepper4sをgitからcloneして
 
@@ -29,6 +29,24 @@
   authentication.key = {{key}}
 #+END_SRC
 
-  と置けばおっけー。
+  と置けば良い。
 
-  詳しくはsrc/main/sample以下を参考にしてください。
+  詳しくはsrc/main/sample以下を参考。
+
+* 注意点
+  詳細は公式のAPI Referenceも見ると良い。
+  [[http://webservice.recruit.co.jp/hotpepper/reference.html]]
+
+** gourmetSearchとshopSearch
+   gourmetSearchとshopSearchは似ているが全く別物。取れる情報も検索できる条件も、そもそもマスターデータから違う。
+   後者が旧フォーマットではないかという予想はある。
+
+** gourmetSearchのType
+   帰ってくるデータ量をNormal、Liteなどから選べる。ただし現状ではLiteのみ。
+
+* TODOリスト
+  - マスター取得系APIの実装
+  - Lite以外のTypeへの対応
+  - 継承関係の整理
+  - twitter4jっぽくページめくりの実装
+  - scaladoc整理

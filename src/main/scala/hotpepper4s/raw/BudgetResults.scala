@@ -1,7 +1,7 @@
 package hotpepper4s.raw
 
 import hotpepper4s.Budget.LimitedBudget
-import hotpepper4s.Results
+import hotpepper4s.{Entire, Results}
 
 /**
  * @author ponkotuy
@@ -19,4 +19,4 @@ case class BudgetResults(
   def resultsStart: Int = results_start
 }
 
-case class BudgetEntire(results: BudgetResults)
+case class BudgetEntire(results: BudgetResults) extends Entire[BudgetResults]

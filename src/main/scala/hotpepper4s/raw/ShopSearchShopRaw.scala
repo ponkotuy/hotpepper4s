@@ -1,6 +1,6 @@
 package hotpepper4s.raw
 
-import hotpepper4s.{Results, SearchedShop, Genre, Urls}
+import hotpepper4s._
 import hotpepper4s.Urls.NormalUrls
 
 /**
@@ -46,4 +46,4 @@ case class ShopSearchResult(
   lazy val data: List[SearchedShop] = shop.map(_.toSearchedShop)
 }
 
-case class ShopSearchEntire(results: ShopSearchResult)
+case class ShopSearchEntire(results: ShopSearchResult) extends Entire[ShopSearchResult]

@@ -1,6 +1,6 @@
 package hotpepper4s.raw
 
-import hotpepper4s.{Results, Area}
+import hotpepper4s.{Entire, Results, Area}
 
 /**
  * @author ponkotuy
@@ -19,4 +19,4 @@ case class AreaResults(
   def data: List[Area] = large_service_area
 }
 
-case class AreaResultsEntire(results: AreaResults)
+case class AreaResultsEntire(results: AreaResults) extends Entire[AreaResults]

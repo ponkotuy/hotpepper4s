@@ -1,9 +1,16 @@
 package hotpepper4s
 
 import com.typesafe.config.ConfigFactory
-import hotpepper4s.search.{LargeServiceAreaMaster, BudgetMaster, ShopSearch, GourmetSearch}
+import hotpepper4s.search._
+import scala.util.Try
+import hotpepper4s.raw._
 import hotpepper4s.Budget.LimitedBudget
-import scala.util.{Failure, Success, Try}
+import scala.util.Success
+import hotpepper4s.raw.ShopSearchEntire
+import hotpepper4s.raw.EntireImpl
+import hotpepper4s.raw.ResultRawImpl
+import scala.util.Failure
+import hotpepper4s.raw.ShopSearchResult
 
 /**
  * HotPepper API
@@ -24,9 +31,11 @@ object HotPepper {
   val Version = "v1"
 
   // GourmetSearch
-  def gourmetSearchById(id: String, typ: Type = Type.NORMAL): Shop = GourmetSearch.one(id, typ)
+  lazy val gourmetSearch = new CommonSearch[Shop, ResultRawImpl, EntireImpl]("gourmet")
+  def gourmetSearchById(id: String, typ: Type = Type.NORMAL): Shop =
+    gourmetSearch.one(Map("id" -> id, "type" -> typ.str))
   def gourmetSearch(qMap: Map[String, String], typ: Type, start: Int, count: Int): List[Shop] =
-    GourmetSearch.shops(qMap ++ Map("type" -> typ.str, "start" -> start.toString, "count" -> count.toString))
+    gourmetSearch.list(qMap ++ Map("type" -> typ.str, "start" -> start.toString, "count" -> count.toString))
   def gourmetSearchByName(name: String, typ: Type = Type.NORMAL, start: Int = 1, count: Int = 100): List[Shop] =
     gourmetSearch(Map("name" -> name), typ, start, count)
   def gourmetSearchByKana(kana: String, typ: Type = Type.NORMAL, start: Int = 1, count: Int = 100): List[Shop] =
@@ -35,17 +44,20 @@ object HotPepper {
     gourmetSearch(Map("name_any" -> any), typ, start, count)
 
   // ShopSearch
+  lazy val shopSearch = new CommonSearch[SearchedShop, ShopSearchResult, ShopSearchEntire]("shop")
   /**
    * @param tel : Number String(checking if '-' contains)
    * @return : ShopLite
    */
-  def shopSearchByTel(tel: String): SearchedShop = ShopSearch.one(tel)
+  def shopSearchByTel(tel: String): SearchedShop = shopSearch.one(Map("tel" -> tel))
   def shopSearch(qMap: Map[String, String], start: Int, count: Int): List[SearchedShop] =
-    ShopSearch.shops(qMap ++ Map("start" -> start.toString, "count" -> count.toString))
+    shopSearch.list(qMap ++ Map("start" -> start.toString, "count" -> count.toString))
   def shopSearchByKeyword(keyword: String, start: Int = 1, count: Int = 100): List[SearchedShop] =
     shopSearch(Map("keyword" -> keyword), start, count)
 
   // GetMaster
-  lazy val budgets: List[LimitedBudget] = BudgetMaster.budgets()
-  lazy val largeServiceAreas: List[Area] = LargeServiceAreaMaster.areas()
+  lazy val budgets: List[LimitedBudget] =
+    new CommonSearch[LimitedBudget, BudgetResults, BudgetEntire]("budget").list()
+  lazy val largeServiceAreas: List[Area] =
+    new CommonSearch[Area, AreaResults, AreaResultsEntire]("large_service_area").list()
 }
