@@ -1,0 +1,34 @@
+# -*- coding:utf-8 -*-
+
+#+TITLE: hotpepper4s
+#+AUTHOR: ポンコツ戦艦山本
+#+EMAIL: web@ponkotuy.com
+#+OPTIONS: toc:nil num:nil author:nil creator:nil
+#+STYLE: <link rel="stylesheet" type="text/css" href="org.css"></link>
+#+LANGUAGE: ja
+
+* Introduction
+  hotpepperのAPIをScalaから簡単に叩けるようにする為のWrapperです。
+
+  リクルートのSiteでAPI Keyを取得する必要があります。
+
+* Getting started
+  まずHotPepperAPIのkeyを取得。リクルートのWebサービスは統合されているので、リクルートで登録
+
+  [[http://webservice.recruit.co.jp/index.html]]
+
+  新規登録から行ける。メールアドレスのみで簡単。
+
+  次にhotpepper4sをgitからcloneして
+
+  [[https://github.com/ponkotuy/hotpepper4s]]
+
+  src/main/resouces/hotpepper4s.confに
+
+#+BEGIN_SRC conf
+  authentication.key = {{key}}
+#+END_SRC
+
+  と置けばおっけー。
+
+  詳しくはsrc/main/sample以下を参考にしてください。

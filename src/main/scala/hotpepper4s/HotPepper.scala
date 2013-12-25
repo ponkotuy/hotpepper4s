@@ -1,8 +1,10 @@
 package hotpepper4s
 
 import com.typesafe.config.ConfigFactory
-import hotpepper4s.search.{ShopSearch, GourmetSearch}
+import hotpepper4s.search.{BudgetMaster, ShopSearch, GourmetSearch}
 import java.net.URLEncoder
+import hotpepper4s.Budget.LimitedBudget
+import scala.util.{Failure, Success, Try}
 
 /**
  * HotPepper API
@@ -13,7 +15,12 @@ import java.net.URLEncoder
  */
 object HotPepper {
   val config = ConfigFactory.parseResources("hotpepper4s.conf")
-  val key = config.getString("authentication.key")
+  val key = {
+    Try(config.getString("authentication.key")) match {
+      case Success(str) => str
+      case Failure(e) => "hotpepper4s.conf or authentication.key element doesn't exists."
+    }
+  }
   val BaseURL = "http://webservice.recruit.co.jp/hotpepper/"
   val Version = "v1"
 
@@ -38,4 +45,7 @@ object HotPepper {
     ShopSearch.shops(qMap ++ Map("start" -> start.toString, "count" -> count.toString))
   def shopSearchByKeyword(keyword: String, start: Int = 1, count: Int = 100): List[SearchedShop] =
     shopSearch(Map("keyword" -> keyword), start, count)
+
+  // GetMaster
+  lazy val budgets: List[LimitedBudget] = BudgetMaster.budgets()
 }
