@@ -8,4 +8,8 @@ import hotpepper4s.HotPepper
 object GetMasterSample extends App {
   println(HotPepper.budgets)
   println(HotPepper.largeServiceAreas)
+  println(HotPepper.serviceAreas)
+  println(HotPepper.largeAreas())
+  println(HotPepper.largeAreaByKeyword("神奈川"))
+  println(HotPepper.middleAreaByLargeArea("Z011"))
 }

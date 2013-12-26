@@ -58,6 +58,22 @@ object HotPepper {
   // GetMaster
   lazy val budgets: List[LimitedBudget] =
     new CommonSearch[LimitedBudget, BudgetResults, BudgetEntire]("budget").list()
-  lazy val largeServiceAreas: List[Area] =
-    new CommonSearch[Area, AreaResults, AreaResultsEntire]("large_service_area").list()
+  lazy val largeServiceAreas: List[BaseArea] =
+    new CommonSearch[BaseArea, LargeServiceAreaResults, LargeServiceAreaEntire]("large_service_area").list()
+  lazy val serviceAreas: List[ServiceArea] =
+    new CommonSearch[ServiceArea, ServiceAreaResults, ServiceAreaEntire]("service_area").list()
+
+  // LargeArea
+  lazy val largeArea = new CommonSearch[LargeArea, LargeAreaResults, LargeAreaEntire]("large_area")
+  def largeArea(qMap: Map[String, String]): List[LargeArea] = largeArea.list(qMap)
+  def largeAreas(): List[LargeArea] = largeArea.list()
+  def largeAreaByCode(code: String): LargeArea = largeArea.one(Map("large_area" -> code))
+  def largeAreaByKeyword(keyword: String): List[LargeArea] = largeArea(Map("keyword" -> keyword))
+
+  lazy val middleArea = new CommonSearch[MiddleArea, MiddleAreaResults, MiddleAreaEntire]("middle_area")
+  def middleArea(qMap: Map[String, String]): List[MiddleArea] = middleArea.list()
+  def middleAreaByCode(code: String): MiddleArea = middleArea.one(Map("middle_area" -> code))
+  def middleAreaByLargeArea(area: Area): List[MiddleArea] = middleAreaByLargeArea(area.code)
+  def middleAreaByLargeArea(area: String): List[MiddleArea] = middleArea(Map("large_area" -> area))
+  def middleAreaByKeyword(keyword: String): List[MiddleArea] = middleArea(Map("keyword" -> keyword))
 }

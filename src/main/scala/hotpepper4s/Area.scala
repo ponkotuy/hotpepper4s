@@ -3,6 +3,10 @@ package hotpepper4s
 /**
  * @author ponkotuy
  */
-case class Area(code: String, name: String) {
+trait Area {
+  def code: String
+  def name: String
   def codeName: CodeName = CodeName(code, name)
 }
+
+case class BaseArea(code: String, name: String) extends Area
