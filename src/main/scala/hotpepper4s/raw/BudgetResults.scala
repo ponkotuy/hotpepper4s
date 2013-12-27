@@ -18,5 +18,3 @@ case class BudgetResults(
   def resultsReturned: String = results_returned
   def resultsStart: Int = results_start
 }
-
-case class BudgetEntire(results: BudgetResults) extends Entire[BudgetResults]

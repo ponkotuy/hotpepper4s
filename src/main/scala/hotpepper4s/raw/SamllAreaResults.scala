@@ -20,8 +20,6 @@ case class SmallAreaResults(
   def smallArea = small_area
 }
 
-case class SmallAreaEntire(results: SmallAreaResults) extends Entire[SmallAreaResults]
-
 case class SmallArea(
     code: String,
     name: String,

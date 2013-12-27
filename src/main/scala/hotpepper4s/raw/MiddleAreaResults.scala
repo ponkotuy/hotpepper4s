@@ -20,8 +20,6 @@ case class MiddleAreaResults(
   def middleArea = middle_area
 }
 
-case class MiddleAreaEntire(results: MiddleAreaResults) extends Entire[MiddleAreaResults]
-
 case class MiddleArea(
     code: String,
     name: String,

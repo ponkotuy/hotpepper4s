@@ -45,5 +45,3 @@ case class ShopSearchResult(
   lazy val resultsStart: Int = results_start.toInt
   lazy val data: List[SearchedShop] = shop.map(_.toSearchedShop)
 }
-
-case class ShopSearchEntire(results: ShopSearchResult) extends Entire[ShopSearchResult]

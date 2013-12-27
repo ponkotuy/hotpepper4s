@@ -19,5 +19,3 @@ case class LargeServiceAreaResults(
   def data: List[BaseArea] = large_service_area
   def largeServiceArea = large_service_area
 }
-
-case class LargeServiceAreaEntire(results: LargeServiceAreaResults) extends Entire[LargeServiceAreaResults]
