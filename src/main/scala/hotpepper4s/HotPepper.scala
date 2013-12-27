@@ -7,10 +7,10 @@ import hotpepper4s.raw._
 import hotpepper4s.Budget.LimitedBudget
 import scala.util.Success
 import hotpepper4s.raw.ShopSearchEntire
-import hotpepper4s.raw.EntireImpl
 import hotpepper4s.raw.ResultRawImpl
 import scala.util.Failure
 import hotpepper4s.raw.ShopSearchResult
+import hotpepper4s.Genre.GenreCodeName
 
 /**
  * HotPepper API
@@ -31,7 +31,7 @@ object HotPepper {
   val Version = "v1"
 
   // GourmetSearch
-  lazy val gourmetSearch = new CommonSearch[Shop, ResultRawImpl, EntireImpl]("gourmet")
+  lazy val gourmetSearch = new CommonSearch[Shop, ResultRawImpl, EntireImpl[ResultRawImpl]]("gourmet")
   def gourmetSearchById(id: String, typ: Type = Type.NORMAL): Shop =
     gourmetSearch.one(Map("id" -> id, "type" -> typ.str))
   def gourmetSearch(qMap: Map[String, String], typ: Type, start: Int, count: Int): List[Shop] =
@@ -85,4 +85,8 @@ object HotPepper {
   def smallAreaByMiddleArea(area: Area): List[SmallArea] = smallAreaByMiddleArea(area.code)
   def smallAreaByMiddleArea(area: String): List[SmallArea] = smallArea(Map("middle_area" -> area))
   def smallAreaByKeyword(keyword: String): List[SmallArea] = smallArea(Map("keyword" -> keyword))
+
+  // Genre
+  lazy val genres: List[GenreCodeName] =
+    new CommonSearch[GenreCodeName, GenreResults, EntireImpl[GenreResults]]("genre").list()
 }
