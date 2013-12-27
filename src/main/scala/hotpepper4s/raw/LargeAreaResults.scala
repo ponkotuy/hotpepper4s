@@ -17,6 +17,7 @@ case class LargeAreaResults(
   def resultsReturned: String = results_returned
   def resultsStart: Int = results_start
   def data: List[LargeArea] = large_area
+  def largeArea = large_area
 }
 
 case class LargeAreaEntire(results: LargeAreaResults) extends Entire[LargeAreaResults]

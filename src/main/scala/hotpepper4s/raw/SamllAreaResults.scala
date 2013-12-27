@@ -1,33 +1,35 @@
 package hotpepper4s.raw
 
-import hotpepper4s.{Entire, Area, BaseArea, Results}
+import hotpepper4s.{Area, BaseArea, Entire, Results}
 
 /**
  * @author ponkotuy
  * date: 13/12/27
  */
-case class MiddleAreaResults(
+case class SmallAreaResults(
     api_version: String,
     results_available: Int,
     results_returned: String,
     results_start: Int,
-    middle_area: List[MiddleArea]) extends Results[MiddleArea]{
+    small_area: List[SmallArea]) extends Results[SmallArea]{
   def apiVersion: String = api_version
   def resultsAvailable: Int = results_available
   def resultsReturned: String = results_returned
   def resultsStart: Int = results_start
-  def data: List[MiddleArea] = middle_area
-  def middleArea = middle_area
+  def data: List[SmallArea] = small_area
+  def smallArea = small_area
 }
 
-case class MiddleAreaEntire(results: MiddleAreaResults) extends Entire[MiddleAreaResults]
+case class SmallAreaEntire(results: SmallAreaResults) extends Entire[SmallAreaResults]
 
-case class MiddleArea(
+case class SmallArea(
     code: String,
     name: String,
+    middle_area: BaseArea,
     large_area: BaseArea,
     service_area: BaseArea,
     large_service_area: BaseArea) extends Area {
+  def middleArea = middle_area
   def largeArea = large_area
   def serviceArea = service_area
   def largeServiceArea = large_service_area

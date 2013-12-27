@@ -16,6 +16,7 @@ case class ServiceAreaResults(
   def resultsReturned: String = results_returned
   def resultsStart: Int = results_start
   def data: List[ServiceArea] = service_area
+  def serviceArea = service_area
 }
 
 case class ServiceAreaEntire(results: ServiceAreaResults) extends Entire[ServiceAreaResults]

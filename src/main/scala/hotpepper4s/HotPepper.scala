@@ -70,10 +70,19 @@ object HotPepper {
   def largeAreaByCode(code: String): LargeArea = largeArea.one(Map("large_area" -> code))
   def largeAreaByKeyword(keyword: String): List[LargeArea] = largeArea(Map("keyword" -> keyword))
 
+  // MiddleArea
   lazy val middleArea = new CommonSearch[MiddleArea, MiddleAreaResults, MiddleAreaEntire]("middle_area")
-  def middleArea(qMap: Map[String, String]): List[MiddleArea] = middleArea.list()
+  def middleArea(qMap: Map[String, String]): List[MiddleArea] = middleArea.list(qMap)
   def middleAreaByCode(code: String): MiddleArea = middleArea.one(Map("middle_area" -> code))
   def middleAreaByLargeArea(area: Area): List[MiddleArea] = middleAreaByLargeArea(area.code)
   def middleAreaByLargeArea(area: String): List[MiddleArea] = middleArea(Map("large_area" -> area))
   def middleAreaByKeyword(keyword: String): List[MiddleArea] = middleArea(Map("keyword" -> keyword))
+
+  // SmallArea
+  lazy val smallArea = new CommonSearch[SmallArea, SmallAreaResults, SmallAreaEntire]("small_area")
+  def smallArea(qMap: Map[String, String]): List[SmallArea] = smallArea.list(qMap)
+  def smallAreaByCode(code: String): SmallArea = smallArea.one(Map("small_area" -> code))
+  def smallAreaByMiddleArea(area: Area): List[SmallArea] = smallAreaByMiddleArea(area.code)
+  def smallAreaByMiddleArea(area: String): List[SmallArea] = smallArea(Map("middle_area" -> area))
+  def smallAreaByKeyword(keyword: String): List[SmallArea] = smallArea(Map("keyword" -> keyword))
 }
