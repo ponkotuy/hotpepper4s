@@ -88,4 +88,8 @@ object HotPepper {
   // Genre
   lazy val genres: List[GenreCodeName] =
     new CommonSearch[GenreCodeName, GenreResults]("genre").list()
+
+  // Food Category
+  lazy val foodCategories: List[FoodCategory] =
+    new CommonSearch[FoodCategory, FoodCategoryResults]("food_category").list()
 }

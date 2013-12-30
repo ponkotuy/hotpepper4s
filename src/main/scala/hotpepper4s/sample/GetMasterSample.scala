@@ -14,4 +14,5 @@ object GetMasterSample extends App {
   println(HotPepper.middleAreaByLargeArea("Z011"))
   println(HotPepper.smallAreaByMiddleArea("Y005"))
   println(HotPepper.genres)
+  println(HotPepper.foodCategories)
 }
