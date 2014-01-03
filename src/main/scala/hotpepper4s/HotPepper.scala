@@ -104,4 +104,14 @@ object HotPepper {
   // Credit Card Master
   lazy val creditCards: List[CreditCard] =
     new CommonSearch[CreditCard, CreditCardResults]("credit_card").list()
+
+  // Special Category Master
+  lazy val specialCategories: List[SpecialCategory] =
+    new CommonSearch[SpecialCategory, SpecialCategoryResults]("special_category").list()
+
+  // Special Master
+  lazy val special = new CommonSearch[Special, SpecialResults]("special")
+  def specialByCode(code: String): Special = special.one(Map("special" -> code))
+  def specialByCategory(cat: String): List[Special] = special.list(Map("special_category" -> cat))
+  def specialByCategory(cat: SpecialCategory): List[Special] = specialByCategory(cat.code)
 }
