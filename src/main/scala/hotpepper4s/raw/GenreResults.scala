@@ -7,10 +7,10 @@ import hotpepper4s.Results
  * @author ponkotuy
  */
 case class GenreResults(
-    api_version: String,
-    results_available: Int,
-    results_returned: String,
-    results_start: Int,
+    private val api_version: String,
+    private val results_available: Int,
+    private val results_returned: String,
+    private val results_start: Int,
     genre: List[GenreCodeName]) extends Results[GenreCodeName] {
   def apiVersion: String = api_version
   def resultsAvailable: Int = results_available

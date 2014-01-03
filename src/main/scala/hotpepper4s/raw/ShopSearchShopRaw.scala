@@ -9,16 +9,18 @@ import hotpepper4s.Urls.NormalUrls
 case class ShopSearchShop(
     id: String,
     name: String,
-    name_kana: String,
+    private val name_kana: String,
     address: String,
     genre: Genre,
     urls: Urls,
-    desc: Boolean) extends SearchedShop
+    desc: Boolean) extends SearchedShop{
+  def nameKana: String = name_kana
+}
 
 case class ShopSearchShopRaw(
     id: String,
     name: String,
-    name_kana: String,
+    private val name_kana: String,
     address: String,
     genre: ShopSearchGenre,
     urls: NormalUrls,
@@ -34,10 +36,10 @@ case class ShopSearchGenre(name: String) extends Genre{
 }
 
 case class ShopSearchResult(
-    api_version: String,
-    results_available: Int,
-    results_returned: String,
-    results_start: String,
+    private val api_version: String,
+    private val results_available: Int,
+    private val results_returned: String,
+    private val results_start: String,
     shop: List[ShopSearchShopRaw]) extends Results[SearchedShop]{
   def apiVersion: String = api_version
   def resultsAvailable: Int = results_available

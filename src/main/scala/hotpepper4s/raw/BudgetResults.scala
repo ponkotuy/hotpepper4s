@@ -1,16 +1,16 @@
 package hotpepper4s.raw
 
 import hotpepper4s.Budget.LimitedBudget
-import hotpepper4s.{Entire, Results}
+import hotpepper4s.Results
 
 /**
  * @author ponkotuy
  */
 case class BudgetResults(
-    api_version: String,
-    results_available: Int,
-    results_returned: String,
-    results_start: Int,
+    private val api_version: String,
+    private val results_available: Int,
+    private val results_returned: String,
+    private val results_start: Int,
     budget: List[LimitedBudget]) extends Results[LimitedBudget]{
   def data: List[LimitedBudget] = budget
   def apiVersion: String = api_version

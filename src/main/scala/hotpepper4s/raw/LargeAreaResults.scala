@@ -1,17 +1,18 @@
 package hotpepper4s.raw
 
-import hotpepper4s.{Area, BaseArea, Entire, Results}
+import hotpepper4s.{Area, BaseArea, Results}
 
 /**
  * @author ponkotuy
  * date: 13/12/27
  */
+
 case class LargeAreaResults(
-    api_version: String,
-    results_available: Int,
-    results_returned: String,
-    results_start: Int,
-    large_area: List[LargeArea]) extends Results[LargeArea] {
+    private val api_version: String,
+    private val results_available: Int,
+    private val results_returned: String,
+    private val results_start: Int,
+    private val large_area: List[LargeArea]) extends Results[LargeArea] {
   def apiVersion: String = api_version
   def resultsAvailable: Int = results_available
   def resultsReturned: String = results_returned
@@ -19,8 +20,6 @@ case class LargeAreaResults(
   def data: List[LargeArea] = large_area
   def largeArea = large_area
 }
-
-case class LargeAreaEntire(results: LargeAreaResults) extends Entire[LargeAreaResults]
 
 case class LargeArea(
     code: String,

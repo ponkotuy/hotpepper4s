@@ -7,11 +7,11 @@ import hotpepper4s.{Area, BaseArea, Entire, Results}
  * date: 13/12/27
  */
 case class SmallAreaResults(
-    api_version: String,
-    results_available: Int,
-    results_returned: String,
-    results_start: Int,
-    small_area: List[SmallArea]) extends Results[SmallArea]{
+    private val api_version: String,
+    private val results_available: Int,
+    private val results_returned: String,
+    private val results_start: Int,
+    private val small_area: List[SmallArea]) extends Results[SmallArea]{
   def apiVersion: String = api_version
   def resultsAvailable: Int = results_available
   def resultsReturned: String = results_returned
@@ -23,10 +23,10 @@ case class SmallAreaResults(
 case class SmallArea(
     code: String,
     name: String,
-    middle_area: BaseArea,
-    large_area: BaseArea,
-    service_area: BaseArea,
-    large_service_area: BaseArea) extends Area {
+    private val middle_area: BaseArea,
+    private val large_area: BaseArea,
+    private val service_area: BaseArea,
+    private val large_service_area: BaseArea) extends Area {
   def middleArea = middle_area
   def largeArea = large_area
   def serviceArea = service_area
