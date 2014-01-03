@@ -54,22 +54,26 @@ object HotPepper {
   def shopSearchByKeyword(keyword: String, start: Int = 1, count: Int = 100): List[SearchedShop] =
     shopSearch(Map("keyword" -> keyword), start, count)
 
-  // GetMaster
+  // Budget Master
   lazy val budgets: List[LimitedBudget] =
     new CommonSearch[LimitedBudget, BudgetResults]("budget").list()
+
+  // Large Service Area Master
   lazy val largeServiceAreas: List[BaseArea] =
     new CommonSearch[BaseArea, LargeServiceAreaResults]("large_service_area").list()
+
+  // Service Area Master
   lazy val serviceAreas: List[ServiceArea] =
     new CommonSearch[ServiceArea, ServiceAreaResults]("service_area").list()
 
-  // LargeArea
+  // Large Area Master
   lazy val largeArea = new CommonSearch[LargeArea, LargeAreaResults]("large_area")
   def largeArea(qMap: Map[String, String]): List[LargeArea] = largeArea.list(qMap)
   def largeAreas(): List[LargeArea] = largeArea.list()
   def largeAreaByCode(code: String): LargeArea = largeArea.one(Map("large_area" -> code))
   def largeAreaByKeyword(keyword: String): List[LargeArea] = largeArea(Map("keyword" -> keyword))
 
-  // MiddleArea
+  // Middle Area Master
   lazy val middleArea = new CommonSearch[MiddleArea, MiddleAreaResults]("middle_area")
   def middleArea(qMap: Map[String, String]): List[MiddleArea] = middleArea.list(qMap)
   def middleAreaByCode(code: String): MiddleArea = middleArea.one(Map("middle_area" -> code))
@@ -77,7 +81,7 @@ object HotPepper {
   def middleAreaByLargeArea(area: String): List[MiddleArea] = middleArea(Map("large_area" -> area))
   def middleAreaByKeyword(keyword: String): List[MiddleArea] = middleArea(Map("keyword" -> keyword))
 
-  // SmallArea
+  // Small Area Master
   lazy val smallArea = new CommonSearch[SmallArea, SmallAreaResults]("small_area")
   def smallArea(qMap: Map[String, String]): List[SmallArea] = smallArea.list(qMap)
   def smallAreaByCode(code: String): SmallArea = smallArea.one(Map("small_area" -> code))
@@ -85,11 +89,15 @@ object HotPepper {
   def smallAreaByMiddleArea(area: String): List[SmallArea] = smallArea(Map("middle_area" -> area))
   def smallAreaByKeyword(keyword: String): List[SmallArea] = smallArea(Map("keyword" -> keyword))
 
-  // Genre
+  // Genre Master
   lazy val genres: List[GenreCodeName] =
     new CommonSearch[GenreCodeName, GenreResults]("genre").list()
 
-  // Food Category
+  // Food Category Master
   lazy val foodCategories: List[FoodCategory] =
     new CommonSearch[FoodCategory, FoodCategoryResults]("food_category").list()
+
+  // Food Master
+  lazy val foods: List[FoodFull] =
+    new CommonSearch[FoodFull, FoodResults]("food").list()
 }
