@@ -100,4 +100,8 @@ object HotPepper {
   // Food Master
   lazy val foods: List[FoodFull] =
     new CommonSearch[FoodFull, FoodResults]("food").list()
+
+  // Credit Card Master
+  lazy val creditCards: List[CreditCard] =
+    new CommonSearch[CreditCard, CreditCardResults]("credit_card").list()
 }

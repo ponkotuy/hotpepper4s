@@ -16,4 +16,5 @@ object GetMasterSample extends App {
   println(HotPepper.genres)
   println(HotPepper.foodCategories)
   println(HotPepper.foods)
+  println(HotPepper.creditCards)
 }
